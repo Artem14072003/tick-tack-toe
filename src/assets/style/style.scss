@@ -1,0 +1,109 @@
+// var
+$back-white: #fff;
+
+//mixin
+
+@mixin flex($direct: column, $just: center, $align: center, $gap: 0) {
+  display: flex;
+  flex-direction: $direct;
+  justify-content: $just;
+  align-items: $align;
+  gap: $gap;
+}
+
+//style
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background: #0f0c29; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+// molecule
+
+.Home {
+  height: 100vh;
+  @include flex();
+
+  .gamebord {
+    width: 304px;
+    height: 300px;
+    @include flex(row, stretch, stretch);
+    flex-wrap: wrap;
+    position: relative;
+    border: 2px solid $back-white;
+
+    .disabled {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .square {
+      width: 100px;
+      height: 100px;
+      border: 3px solid $back-white;
+      @include flex(row);
+
+      .circle {
+        height: 90px;
+        width: 90px;
+        border-radius: 50%;
+        border: 10px solid $back-white;
+      }
+
+      .cross {
+        width: 90px;
+        height: 90px;
+        position: relative;
+
+        &:before, &:after {
+          content: "";
+          position: absolute;
+          background-color: red;
+          transform: rotate(-45deg);
+        }
+
+        &:before {
+          left: 50%;
+          width: 30%;
+          margin-left: -15%;
+          height: 100%;
+        }
+
+        &:after {
+          top: 50%;
+          height: 30%;
+          margin-top: -15%;
+          width: 100%;
+        }
+      }
+    }
+
+    > p {
+      width: 100%;
+      text-align: center;
+      font-size: 1.4em;
+      color: $back-white;
+      margin: 30px 0;
+    }
+
+    > button {
+      width: 100%;
+      height: 30px;
+
+    }
+  }
+}
